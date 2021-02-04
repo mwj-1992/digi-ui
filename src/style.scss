@@ -1,0 +1,135 @@
+.input-container {
+  margin-bottom: 15px;
+
+  input {
+    padding-right: 42.5px;
+    border-radius: 0;
+    box-shadow: none;
+    border-color: #d2d6de;
+
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+}
+
+.login-form {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.42857143;
+  width: 360px;
+  margin: 7% auto;
+ 
+}
+
+h2{
+  font-size:18px;
+  margin-bottom: 15px;
+  text-align:left;
+  text-transform: uppercase;
+}
+.button-container {
+  box-sizing: border-box;
+
+  .btnSubmit {
+    color: #fff;
+    
+    background-color: #204d74;
+    border-color: #122b40;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    border-radius: 0;
+    border-width: 1px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    -webkit-appearance: button;
+    text-transform: none;
+    overflow: visible;
+    box-sizing: border-box;
+    margin: 0px;;
+  }
+}
+
+.remember-container {
+  box-sizing: border-box;
+}
+
+span.input-icon {
+  color: #777;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  pointer-events: none;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  font-size: 14px;
+
+  &:before {
+    content: "\\2709";
+  }
+}
+
+:local(.className) { background: red; }
+:global(.xyz)  { background: green; }
+
+
+button.btnSubmit {
+  flex: 1 1 auto;
+  margin: 10px;
+  padding: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+}
+
+.btnSubmit:hover {
+background-position: right center; /* change the direction of the change here */
+}
+body{
+  //  background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #e4c258 100%);
+}
+form{
+  // box-shadow:0px 1px 40px white;
+
+  // padding:30px 20px;
+// border:1px solid #ffffff57;
+}
+form *{
+outline:none !important;}
+input{
+outline: none !important
+}
