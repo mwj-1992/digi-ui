@@ -11,3 +11,51 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+span.toggleInput {
+  position: absolute;
+  top: 9px;
+  right: 14px;
+  cursor: pointer;
+}
+.msg-alert{
+  position: fixed !important;
+    top: 55px;
+    margin: auto;
+    left: 0px;
+    right: 0px;
+    width: auto;
+}
+
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  margin: -76px 0 0 -76px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+.green{
+  color:#05b105;
+}
+.red{
+  color: red;
+}
+small span.red, small span.green{
+  margin-right: 3px;;
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

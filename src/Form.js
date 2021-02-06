@@ -7,9 +7,14 @@ class Form extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      Username: "",
-      Password: "",
+      email: "",
+      name: "",
+      password: "",
       error: {},
+      inputType: "password",
+      minLengthCondition: false,
+      upperCaseCondition: false,
+      nonAlphanumericCondition: false,
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -17,27 +22,46 @@ class Form extends React.Component {
 
   handleLogin(evt) {
     evt.preventDefault();
-    
+
     this.setState({
       error: {},
     });
 
-    const { Username, Password } = this.state;
+    const { email, password, name } = this.state;
 
-    return this.props.onSubmit(Username, Password);
+    return this.props.onSubmit({ name, email, password });
   }
+  toggleInputType = () => {
+    this.setState(
+      { inputType: this.state.inputType === "password" ? "text" : "password" },
+      () => {}
+    );
+  };
 
   componentDidMount() {
     document.title = this.props.title || "Digi App";
-
   }
 
-  handleChange(name, e) {
+  handleChange(e) {
+    let upperCaseCondition = false;
+    let nonAlphanumericCondition = false;
+    let minLengthCondition = false;
+    if (e.target.name === "password") {
+      if (/(?=.*[A-Z])/.test(e.target.value)) {
+        console.log(true);
+        upperCaseCondition = true;}
+      if (/(?=.*?[#?!@$%^&*-])/.test(e.target.value))
+        nonAlphanumericCondition = true;
+      if (e.target.value.length >= 12) minLengthCondition = true;
+    }
     this.setState({
-      [name]: e.target.value,
+      [e.target.name]: e.target.value,
+      upperCaseCondition,
+      nonAlphanumericCondition,
+      minLengthCondition
+    },()=>{
     });
   }
-
 
   render() {
     let usernameOptions = {
@@ -69,23 +93,24 @@ class Form extends React.Component {
           <div className={usernameOptions.containerClassName}>
             <input
               maxLength={40}
-              placeholder="Name*"
+              placeholder="name*"
               autoComplete="off"
               className={usernameOptions.className}
               required
-              onChange={(e) => this.handleChange("name", e)}
+              name="name"
+              onChange={(e) => this.handleChange(e)}
               type="text"
             />
           </div>
         )}
         <div className={usernameOptions.containerClassName}>
           <input
-            maxLength={40}
             placeholder="Email*"
             autoComplete="off"
+            name="email"
             className={usernameOptions.className}
             required
-            onChange={(e) => this.handleChange("Username", e)}
+            onChange={(e) => this.handleChange(e)}
             type="email"
           />
           <span className="glyphicon glyphicon-envelope " />
@@ -98,19 +123,38 @@ class Form extends React.Component {
             required
             minLength={12}
             pattern="(?=.*?[#?!@$%^&*-])(?=.*[A-Z]).{12,}"
-            name="Password"
-            onChange={(e) => this.handleChange("Password", e)}
+            name="password"
+            onChange={(e) => this.handleChange(e)}
             placeholder="Password"
             title="Password must contain at least 12 Charachters, at least one Uppercase, at least one non-alphanumeric"
-            type="text"
+            type={this.state.inputType}
           />
-          <small className="text-left d-flex">
-            Password must contain at least 12 Charachters, at least one
-            Uppercase, at least one non-alphanumeric
+          <span
+            class="toggleInput"
+            onClick={() => {
+              this.toggleInputType();
+            }}
+          >
+            {this.state.inputType === "password" ? "Show" : "Hide"}
+          </span>
+          <small className="text-left">
+            <span className={this.state.minLengthCondition ?"green": "red"}>
+              Password must contain at least 12 Charachters,
+            </span>
+            <span className={this.state.upperCaseCondition ?"green": "red"}>
+              
+              at least one Uppercase,
+            </span>
+            
+            <span
+              className={this.state.nonAlphanumericCondition ?"green": "red"}
+            >
+              at least one non-alphanumeric
+            </span>
           </small>
         </div>
         <div className="d-flex justify-content-between">
-          <div className={this.props.btn.className} >
+          <div className={this.props.btn.className}>
             <button type="submit" className="btnSubmit">
               {this.props.btn.text}
             </button>
@@ -121,18 +165,20 @@ class Form extends React.Component {
   }
 }
 Form.propTypes = {
-  username: PropTypes.object,
+  email: PropTypes.object,
   password: PropTypes.object,
+  name: PropTypes.object,
   form: PropTypes.object,
   text: PropTypes.string.isRequired,
   formName: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  btn : PropTypes.object
+  btn: PropTypes.object,
 };
 
 Form.defaultProps = {
-  username: {},
+  email: {},
   password: {},
+  name: {},
 };
 
 export default Form;
