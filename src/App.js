@@ -26,11 +26,12 @@ class App extends React.Component {
       () => {
         setTimeout(() => {
           this.setState({ showingMsg: false });
-        }, 1000 * 400);
+        }, 1000 * 4);
       }
     );
   };
-      
+  
+  
   login = (formData) => {
     const _this = this;
     _this.setState({ isLoading: !this.state.isLoading });
